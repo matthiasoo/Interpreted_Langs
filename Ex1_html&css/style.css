@@ -27,7 +27,6 @@ body {
 }
 
 .ufo-top {
-    position: relative;
     height: 40px;
     width: 300px;
     background: linear-gradient(to bottom, #406300, #1d1d1d);
@@ -83,7 +82,7 @@ body {
 
 .ufo-lightbeam {
     position: absolute;
-    top: 95%;
+    top: 96%;
     height: 200px;
     width: 300px;
     background: linear-gradient(
