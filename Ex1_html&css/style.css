@@ -1,0 +1,55 @@
+body {
+    background: #0b1045;
+    display: flex;
+    height: 100vh;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.ufo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.ufo-glass {
+    height: 50px;
+    width: 100px;
+    background: #a6ff00;
+    border-radius: 50% / 100%;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: 0 0 15px #a6ff00;
+}
+
+.ufo-top {
+    height: 40px;
+    width: 300px;
+    background: #424242;
+    clip-path: polygon(100px 0%, 200px 0%, 300px 100%, 0 100%);
+}
+
+.ufo-bottom {
+    position: relative;
+    height: 50px;
+    width: 300px;
+    background: #969696;
+    border-radius: 50% / 100%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.ufo-light {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 10px;
+    width: 100px;
+    background: #a6ff00;
+    border-radius: 50%;
+    box-shadow: 0 0 15px #a6ff00;
+}
