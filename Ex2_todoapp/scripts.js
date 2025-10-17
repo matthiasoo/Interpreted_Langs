@@ -1,6 +1,9 @@
 "use strict"
 let todoList = [];
 
+const YOUR_API_KEY = "$2a$10$4L4DIXkmhqFOuplpG0v5meSVGNPQQtFq4KAjROORHFduED5MEvo16";
+const BIN_ID = "68f24e4143b1c97be96d2292";
+
 let initList = function() {
   let savedList = window.localStorage.getItem("todos");
     if (savedList != null)
@@ -26,7 +29,38 @@ let initList = function() {
     );
 }
 
-initList();
+let req = new XMLHttpRequest();
+
+req.onreadystatechange = () => {
+  if (req.readyState == XMLHttpRequest.DONE) {
+    console.log(req.responseText);
+  }
+};
+
+req.open("GET", `https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, true);
+req.setRequestHeader("X-Master-Key", YOUR_API_KEY);
+req.send();
+
+// initList();
+
+let updateJSONbin = function() {
+    // ciało funkcji na podstawie https://jsonbin.io/api-reference/bins/update
+    // UWAGA: ta funkcja zastepuje całą zawartość bina
+
+    let req = new XMLHttpRequest();
+
+    req.onreadystatechange = () => {
+      if (req.readyState == XMLHttpRequest.DONE) {
+        //console.log(req.responseText);
+        todoList=req.response;
+      }
+    };
+
+    req.open("PUT", `https://api.jsonbin.io/v3/b/${BIN_ID}`, true);
+    req.setRequestHeader("Content-Type", "application/json");
+    req.setRequestHeader("X-Master-Key", YOUR_API_KEY);
+    req.send('{"sample": "Hello World"}');
+}
 
 let updateTodoList = function() {
     let todoListDiv =
@@ -68,6 +102,7 @@ setInterval(updateTodoList, 1000);
 
 let deleteTodo = function(index) {
     todoList.splice(index,1);
+    updateJSONbin();
 }
 
 let addTodo = function() {
@@ -93,4 +128,6 @@ let addTodo = function() {
     todoList.push(newTodo);
 
     window.localStorage.setItem("todos", JSON.stringify(todoList));
+
+    updateJSONbin();
 }
